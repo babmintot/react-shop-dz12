@@ -21,7 +21,7 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
 
-    /* 👇 ДОБАВЛЕНО: Алиасы для импортов @/ */
+    /* ДОБАВЛЕНО: Алиасы для импортов @/ */
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
