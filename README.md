@@ -10,37 +10,52 @@
 
 ##  Демо
 
-[ Открыть приложение](https://react-shop-dz12.vercel.app)
 
----
+[Открыть приложение](https://react-shop-dz12.vercel.app)
+
 
 ##  Структура проекта
 
 src/
 ├── pages/ # Страницы приложения
-│ ├── Home.tsx # Главная страница
-│ ├── List.tsx # Каталог товаров
-│ ├── Details.tsx # Детали товара
-│ ├── About.tsx # Страница "О нас"
-│ └── Favorites.tsx # Избранное
-├── components/ # Переиспользуемые компоненты
-│ ├── Navbar.tsx # Навигационное меню
-│ ├── ProductCard.tsx # Карточка товара
-│ ├── Spinner.tsx # Индикатор загрузки
-│ └── ErrorMessage.tsx# Сообщение об ошибке
-├── context/ # Глобальное состояние
-│ └── AppContext.tsx # Context API (избранное + кэш)
-├── services/ # Слой работы с сетью
-│ └── api.ts # Fetch-запросы к API
-├── types.ts # TypeScript-интерфейсы
-├── App.tsx # Настройка маршрутизации
-└── main.tsx # Точка входа
 
+│ ├── Home.tsx # Главная страница
+
+│ ├── List.tsx # Каталог товаров
+
+│ ├── Details.tsx # Детали товара
+
+│ ├── About.tsx # Страница "О нас"
+
+│ └── Favorites.tsx # Избранное
+
+├── components/ # Переиспользуемые компоненты
+
+│ ├── Navbar.tsx # Навигационное меню
+
+│ ├── ProductCard.tsx # Карточка товара
+
+│ ├── Spinner.tsx # Индикатор загрузки
+
+│ └── ErrorMessage.tsx# Сообщение об ошибке
+
+├── context/ # Глобальное состояние
+
+│ └── AppContext.tsx # Context API (избранное + кэш)
+
+├── services/ # Слой работы с сетью
+
+│ └── api.ts # Fetch-запросы к API
+
+├── types.ts # TypeScript-интерфейсы
+
+├── App.tsx # Настройка маршрутизации
+
+└── main.tsx # Точка входа
+```
 
 
 ---
-
-##  Выполненные требования
 
 ### Задание 1: Маршрутизация
 - [x] Настроены маршруты: `/`, `/list`, `/list/:id`, `/about` через React Router v6
@@ -85,7 +100,6 @@ npm run dev
 
 # 3. Открыть в браузере
 # → http://localhost:5173
-
 
 ---
 
