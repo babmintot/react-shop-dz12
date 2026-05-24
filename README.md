@@ -2,13 +2,14 @@
 
 Полнофункциональное React-приложение с маршрутизацией, загрузкой данных из OMDb API и управлением состоянием через Context API.
 
-
 ---
 
-##  Демо
+## Ссылки
 
-
-[Открыть приложение](https://react-shop-dz12.vercel.app)
+| | |
+|---|---|
+| **Репозиторий** | [github.com/babmintot/react-shop-dz12](https://github.com/babmintot/react-shop-dz12) |
+##  Демо [Открыть приложение](https://react-shop-dz12.vercel.app)
 
 
 ##  Структура проекта
