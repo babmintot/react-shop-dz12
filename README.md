@@ -10,10 +10,10 @@
 
 ##  Демо
 
-[Открыть приложение](https://react-shop-dz12.vercel.app) *(вставь свою ссылку после деплоя)*
+[Открыть приложение](https://react-shop-dz12.vercel.app)
 
 ---
-
+```text
 ##  Структура проекта
 
 src/
@@ -52,7 +52,7 @@ src/
 ├── App.tsx # Настройка маршрутизации
 
 └── main.tsx # Точка входа
-
+```
 
 
 ---
@@ -102,5 +102,3 @@ npm run dev
 
 # 3. Открыть в браузере
 # → http://localhost:5173
-
-https://react-shop-dz12.vercel.app/
