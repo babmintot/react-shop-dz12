@@ -1,3 +1,4 @@
+// src/pages/Details.tsx
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById } from '@/services/api';
@@ -12,9 +13,9 @@ export const Details = () => {
   
   const { productsCache, toggleFavorite, isFavorite } = useApp();
   
-  // Состояние для найденного товара
   const [product, setProduct] = useState<Product | null>(() => {
-    const found = productsCache.find((p: Product) => p.id === Number(id));
+    // ✅ id уже строка, Number() не нужен
+    const found = productsCache.find((p: Product) => p.id === id);
     return found || null;
   });
 
@@ -24,7 +25,8 @@ export const Details = () => {
   useEffect(() => {
     if (!id || product) return;
 
-    getProductById(Number(id))
+    // ✅ id передаём как строку
+    getProductById(id)
       .then((data: Product) => setProduct(data))
       .catch((e: unknown) => {
         const message = e instanceof Error ? e.message : 'Ошибка загрузки';
@@ -33,14 +35,12 @@ export const Details = () => {
       .finally(() => setLoading(false));
   }, [id, product]);
 
-  // Состояния отображения
   if (loading) return <Spinner />;
   if (error) return <ErrorMessage message={error} onRetry={() => navigate('/list')} />;
-  if (!product) return <ErrorMessage message="Товар не найден" onRetry={() => navigate('/list')} />;
+  if (!product) return <ErrorMessage message="Фильм не найден" onRetry={() => navigate('/list')} />;
 
   return (
     <div style={{ padding: '2rem', display: 'flex', gap: '2rem', flexWrap: 'wrap', maxWidth: '1000px', margin: '0 auto' }}>
-      {/* Левая часть: Картинка */}
       <div style={{ flex: 1, minWidth: '300px' }}>
         <img 
           src={product.image} 
@@ -49,12 +49,11 @@ export const Details = () => {
         />
       </div>
       
-      {/* Правая часть: Инфо */}
       <div style={{ flex: 1, minWidth: '300px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <h1 style={{ margin: 0 }}>{product.title}</h1>
-        <p style={{ color: '#666', margin: 0 }}>{product.category}</p>
+        <p style={{ color: '#666', margin: 0 }}>🎭 {product.category}</p>
         <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#059669', margin: 0 }}>
-          ${product.price}
+          📅 {product.price}
         </p>
         <p style={{ lineHeight: 1.6, color: '#333' }}>{product.description}</p>
         
@@ -71,7 +70,7 @@ export const Details = () => {
               borderRadius: '6px'
             }}
           >
-            {isFavorite(product.id) ? '❤️ В избранном' : '🤍 В избранное'}
+            {isFavorite(product.id) ? '🔖 В закладках' : '📑 В закладки'}
           </button>
 
           <button 

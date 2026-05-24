@@ -29,8 +29,8 @@ export const ProductCard = ({ product }: { product: Product }) => {
         {product.description.slice(0, 60)}...
       </p>
       
-      <p style={{ fontWeight: '600', color: '#059669', margin: 0 }}>
-        ${product.price} | {product.category}
+      <p style={{ fontSize: '0.9rem', color: '#6b7280', margin: 0 }}>
+      {product.price} | {product.category}
       </p>
       
       <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto' }}>
@@ -59,7 +59,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
             cursor: 'pointer',
             fontSize: '1.2rem'
           }}
-          title={isFavorite(product.id) ? 'Убрать из избранного' : 'Добавить в избранное'}
+          title={isFavorite(product.id) ? 'Убрать из закладок' : 'Добавить в закладки'}
         >
           {isFavorite(product.id) ? '❤️' : '🤍'}
         </button>

@@ -24,7 +24,7 @@ export const Navbar = () => {
       <NavLink to="/list" style={linkStyle}>Каталог</NavLink>
       <NavLink to="/about" style={linkStyle}>О нас</NavLink>
       <NavLink to="/favorites" style={linkStyle}>
-        Избранное ({favorites.length})
+      🔖 Закладки ({favorites.length})
       </NavLink>
     </nav>
   );

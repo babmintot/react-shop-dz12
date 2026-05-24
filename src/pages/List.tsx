@@ -17,23 +17,23 @@ export const List = () => {
       return;
     }
 
-    getProducts()
-      .then((data: Product[]) => {  // ← Явный тип для data
+        getProducts()
+        .then((data: Product[]) => {
         setProductsCache(data);
-        setLoading(false);  // ✅ Обновляем после загрузки
-      })
-      .catch((e: Error) => {  // ← Явный тип для e
+        setLoading(false);
+        })
+        .catch((e: Error) => {
         setError(e.message);
         setLoading(false);
-      });
-  }, [productsCache.length, setProductsCache]);  // ✅ Добавили зависимости
+        });
+  }, [productsCache.length, setProductsCache]);
 
   if (loading) return <Spinner />;
   if (error) return <ErrorMessage message={error} onRetry={() => window.location.reload()} />;
 
   return (
     <div style={{ padding: '1rem' }}>
-      <h1>📦 Каталог товаров</h1>
+      <h1> Каталог фильмов</h1>
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', 

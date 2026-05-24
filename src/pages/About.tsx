@@ -1,6 +1,6 @@
 export const About = () => (
   <div style={{ padding: '3rem', maxWidth: '600px', margin: '0 auto' }}>
-    <h1 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>ℹ️ О проекте</h1>
+    <h1 style={{ fontSize: '1.8rem', marginBottom: '1rem' }} > О проекте</h1>
     <p style={{ lineHeight: 1.6 }}>
       React-приложение с маршрутизацией, загрузкой данных из API 
       и управлением состоянием через Context API.

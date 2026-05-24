@@ -1,29 +1,77 @@
 // src/services/api.ts
 import type { Product } from '../types';
 
-// Используем публичный API для демонстрации (FakeStoreAPI)
-// Если у тебя есть свой URL с курса, замени эту строку:
-const API_URL = 'https://fakestoreapi.com/products';
+const API_KEY = '20d9ed08';
+const BASE_URL = 'https://www.omdbapi.com/';
+const SEARCH_QUERY = 'batman';
 
-// Функция для получения списка всех товаров
+// Тип для ответа OMDb (чтобы убрать 'any')
+interface OMDbSearchResult {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
+
+interface OMDbDetailsResult {
+  imdbID: string;
+  Title: string;
+  Plot: string;
+  Year: string;
+  Genre: string;
+  Poster: string;
+  Response: string;
+  Error?: string;
+}
+
 export const getProducts = async (): Promise<Product[]> => {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${BASE_URL}?apikey=${API_KEY}&s=${SEARCH_QUERY}&type=movie`);
   
-  // Обработка ошибок (если сервер вернул 404 или 500)
   if (!response.ok) {
     throw new Error(`Ошибка сети: ${response.status}`);
   }
   
-  return response.json();
-};
-
-// Функция для получения одного товара по ID
-export const getProductById = async (id: number): Promise<Product> => {
-  const response = await fetch(`${API_URL}/${id}`);
+  const data: { Search: OMDbSearchResult[] } = await response.json();
   
-  if (!response.ok) {
-    throw new Error(`Товар не найден: ${response.status}`);
+  if (!data.Search || data.Search.length === 0) {
+    throw new Error('Фильмы не найдены');
   }
   
-  return response.json();
+  return data.Search.map((movie: OMDbSearchResult) => ({
+    id: movie.imdbID,
+    title: movie.Title,
+    description: `Год: ${movie.Year} | Тип: ${movie.Type}`,
+    price: parseInt(movie.Year) || 0,
+    image: movie.Poster !== 'N/A' 
+      ? movie.Poster 
+      : 'https://via.placeholder.com/300x450?text=No+Poster',
+    category: movie.Type
+  }));
+};
+
+// ← Исправлено: id: number → id: string
+export const getProductById = async (id: string): Promise<Product> => {
+  const response = await fetch(`${BASE_URL}?apikey=${API_KEY}&i=${id}`);
+  
+  if (!response.ok) {
+    throw new Error(`Фильм не найден: ${response.status}`);
+  }
+  
+  const movie: OMDbDetailsResult = await response.json();
+  
+  if (movie.Response === 'False') {
+    throw new Error(movie.Error || 'Фильм не найден');
+  }
+  
+  return {
+    id: movie.imdbID,
+    title: movie.Title,
+    description: movie.Plot || 'Описание отсутствует',
+    price: parseInt(movie.Year) || 0,
+    image: movie.Poster !== 'N/A' 
+      ? movie.Poster 
+      : 'https://via.placeholder.com/300x450?text=No+Poster',
+    category: `${movie.Genre || 'Unknown'} | ${movie.Year}`
+  };
 };
