@@ -102,3 +102,5 @@ npm run dev
 
 # 3. Открыть в браузере
 # → http://localhost:5173
+
+https://react-shop-dz12.vercel.app/
